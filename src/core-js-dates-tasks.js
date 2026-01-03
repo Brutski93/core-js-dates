@@ -7,7 +7,7 @@
  *                                                                                             *
  ********************************************************************************************* */
 
-/**
+/** 1
  * By the passed date returns the number of seconds elapsed since 00:00 01.01.1970.
  *
  * @param {string} date - date and time.
@@ -17,11 +17,11 @@
  * '01 Jan 1970 00:00:00 UTC' => 0
  * '04 Dec 1995 00:12:00 UTC' => 818035920000
  */
-function dateToTimestamp(/* date */) {
-  throw new Error('Not implemented');
+function dateToTimestamp(date) {
+  return new Date(date).getTime();
 }
 
-/**
+/** 2
  * Returns the time in hh:mm:ss format from the received date.
  *
  * @param {Date} date - date.
@@ -31,11 +31,15 @@ function dateToTimestamp(/* date */) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
+function getTime(date) {
+  const dateObj = new Date(date);
+  const hh = dateObj.getHours().toString().padStart(2, '0');
+  const mm = dateObj.getMinutes().toString().padStart(2, '0');
+  const ss = dateObj.getSeconds().toString().padStart(2, '0');
+  return `${hh}:${mm}:${ss}`;
 }
 
-/**
+/** 3
  * Returns the name of the day of the week for a given date string.
  *
  * @param {string} date - date and time.
@@ -46,11 +50,20 @@ function getTime(/* date */) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  return days[new Date(date).getDay()];
 }
 
-/**
+/** 4
  * Returns the date of the next Friday from a given date.
  *
  * @param {Date} date
@@ -61,11 +74,15 @@ function getDayName(/* date */) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const today = date.getDay();
+  const daysToFiday = [5, 4, 3, 2, 1, 7, 6][today];
+  const fulltime = date.getTime();
+  const newTime = fulltime + daysToFiday * 1000 * 60 * 60 * 24;
+  return new Date(newTime);
 }
 
-/**
+/** 5
  * Returns the number of days in a specified month and year.
  *
  * @param {number} month - The month as a number (1 for January, 2 for February, etc.).
@@ -80,7 +97,7 @@ function getCountDaysInMonth(/* month, year */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 6
  * Returns the total number of days between two dates, including both the start and end dates.
  *
  * @param {string} dateStart - The start date of the period in ISO 8601 format.
@@ -95,7 +112,7 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 7
  * Returns true if a given date is within a specified range, including both the start and end dates.
  *
  * @typedef {{
@@ -116,7 +133,7 @@ function isDateInPeriod(/* date, period */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 8
  * Returns the date formatted in 'M/D/YYYY, hh:mm:ss a'.
  *
  * @param {string} date - The date to be formatted, in ISO 8601 format (e.g., 'YYYY-MM-DDTHH:mm:ss.sssZ').
@@ -131,7 +148,7 @@ function formatDate(/* date */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 9
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
  *
  * @param {number} month - The source month as a number (1 for January, 2 for February, etc.).
@@ -147,7 +164,7 @@ function getCountWeekendsInMonth(/* month, year */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 10
  * Returns the week number of the year for a given date.
  * The first week of the year is defined according to ISO8601.
  * The first day of the week is Monday.
@@ -164,7 +181,7 @@ function getWeekNumberByDate(/* date */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 11
  * Returns the date of the next Friday the 13th from a given date.
  * Friday the 13th is considered an unlucky day in some cultures.
  *
@@ -179,7 +196,7 @@ function getNextFridayThe13th(/* date */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 12
  * Returns the quarter of the year for a given date.
  *
  * @param {Date} date - The date for which to find the quarter.
@@ -194,7 +211,7 @@ function getQuarter(/* date */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 13
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
  *
@@ -216,7 +233,7 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 14
  * Determines whether the year in the provided date is a leap year.
  * A leap year is a year divisible by 4, but not by 100, unless it is also divisible by 400.
  *
